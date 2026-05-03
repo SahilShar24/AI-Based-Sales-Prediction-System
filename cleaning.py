@@ -3,13 +3,13 @@ import pandas as pd
 def clean_data(df):
     report = {}
 
-    # Remove duplicates
+    
     before = df.shape[0]
     df = df.drop_duplicates()
     after = df.shape[0]
     report['duplicates_removed'] = before - after
 
-    # Handle missing values
+    
     missing_before = df.isnull().sum().sum()
 
     for col in df.columns:
@@ -21,7 +21,7 @@ def clean_data(df):
     missing_after = df.isnull().sum().sum()
     report['missing_values_fixed'] = missing_before - missing_after
 
-    #Convert date columns automatically
+    
     for col in df.columns:
         if "date" in col.lower():
             try:
