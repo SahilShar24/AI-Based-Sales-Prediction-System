@@ -5,19 +5,17 @@ from eda import generate_eda
 from visualization import generate_charts
 from insights import generate_insights
 
-# Title
 st.title("🛒 Data Analysis Automation Bot")
 
-# Description
 st.write("Upload your dataset and let the bot analyze it automatically.")
 
-# File Upload
+
 file = st.file_uploader("Upload CSV file", type=["csv"])
 
 if file is not None:
     df = pd.read_csv(file)
 
-    # Clean data
+    
     df, report = clean_data(df)
 
     st.subheader("🧹 Data Cleaning Report")
@@ -35,7 +33,7 @@ if file is not None:
     st.write("Columns:", df.shape[1])
     st.write("Column Names:", list(df.columns))
 
-    #eda
+   
     eda_report = generate_eda(df)
 
     st.subheader("📊 Data Summary")
@@ -46,7 +44,7 @@ if file is not None:
         st.write(f"Top values in {col}:")
         st.write(values)
 
-    # Charts
+    
     st.subheader("📈 Visualizations")
 
     charts = generate_charts(df)
